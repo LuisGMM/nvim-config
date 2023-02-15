@@ -32,3 +32,9 @@ Then, run these commands to finish installing mypy in `plsp`, run inside neovim 
 ```
 
 This commnand was taken from [here](https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md|), a nvim-lsp-installer section dedicated to plsp.
+
+
+Important links:
+- [Third party plugins](https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md)
+- [pslp plugin settings](https://github.com/palantir/python-language-server/issues/190#issuecomment-810880941)
+
