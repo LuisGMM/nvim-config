@@ -6,9 +6,8 @@ Config file and steps to install nvim in a debian based system.
 Please refer to the official [neovim installation guide](https://github.com/neovim/neovim/wiki/Installing-Neovim) in case of problems. To install from package use:
 ```bash
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz &&
-mv ./nvim-linux64.tar.gz /tmp/nvim-linux64.tar.gz && 
-tar xzvf /tmp/nvim-linux64.tar.gz &&
-/tmp/nvim-linux64/bin/nvim
+tar xzvf nvim-linux64.tar.gz &&
+./nvim-linux64/bin/nvim
 ````
 Copy the file `init.lua` into `~/.config/nvim/init.lua`. For that, you can run inside the repo folder:
 ```bash
