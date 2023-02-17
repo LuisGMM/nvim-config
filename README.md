@@ -17,6 +17,16 @@ cp ./nvim/init.lua ~/.config/nvim/init.lua
 ```
 
 After that is installed, run `nvim` to install all default packages & theme.
+
+Make sure you have installed nodejs, npm and all that crap. In doubt:
+```bash
+sudo apt install curl &&
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - &&
+sudo apt install nodejs &&
+node --version &&
+npm --version
+```
+
 When done, inside neovim, open Mason package manager with `:Mason` and install the preferred packages. In this case, to develop Python, install in this order:
 - lua-language-server
 - python-lsp-server
@@ -24,6 +34,7 @@ When done, inside neovim, open Mason package manager with `:Mason` and install t
 - isort
 - pydocstyle
 - mypy
+- markdownlint
 
 Then, run these commands to finish installing mypy in `plsp`, run inside neovim the following commnand:
 ```
