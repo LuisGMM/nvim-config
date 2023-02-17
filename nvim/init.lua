@@ -58,6 +58,12 @@ require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'ThePrimeagen/harpoon'
 
+  -- Added by me, DoGe. docstring generation
+  use {
+    'kkoomen/vim-doge',
+    run = ':call doge#install()'
+  }
+
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
@@ -103,7 +109,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
