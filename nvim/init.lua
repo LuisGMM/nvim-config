@@ -54,6 +54,10 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
+  -- Added by me, Harpoon. Navigation|terminal/file switching.
+  use 'nvim-lua/plenary.nvim'
+  use 'ThePrimeagen/harpoon'
+
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
@@ -216,6 +220,17 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+-- Setup Harpoon keybindings
+-- Terminal commands
+vim.keymap.set('n',"<C-a>", function() require("harpoon.mark").add_file() end, { desc = '[A]dd mark'})
+vim.keymap.set('n',"<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, { desc = '[F]ind files' })
+
+vim.keymap.set('n', "<C-j>", function() require("harpoon.ui").nav_file(1) end, { desc = 'First file' })
+vim.keymap.set('n', "<C-k>", function() require("harpoon.ui").nav_file(2) end, { desc = 'Second file' })
+vim.keymap.set('n', "<C-l>", function() require("harpoon.ui").nav_file(3) end, { desc = 'Third file' })
+vim.keymap.set('n', "<C-;>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
+--
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
