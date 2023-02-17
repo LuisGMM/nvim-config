@@ -34,6 +34,7 @@ When done, inside neovim, open Mason package manager with `:Mason` and install t
 - isort
 - pydocstyle
 - mypy
+- marksman
 - markdownlint
 
 Then, run these commands to finish installing mypy in `plsp`, run inside neovim the following commnand:
