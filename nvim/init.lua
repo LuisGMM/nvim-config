@@ -238,6 +238,13 @@ vim.keymap.set('n', "<C-l>", function() require("harpoon.ui").nav_file(3) end, {
 vim.keymap.set('n', "<C-;>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
 --
 
+-- Navigation key bindings
+vim.keymap.set('n', "<C-d>", "<C-d>zz")
+vim.keymap.set('n', "<C-d>", "<C-d>zz")
+vim.keymap.set('n', "n", "nzzv")
+vim.keymap.set('n', "N", "Nzzv")
+--
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
