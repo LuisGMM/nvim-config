@@ -245,6 +245,11 @@ vim.keymap.set('n', "n", "nzzv")
 vim.keymap.set('n', "N", "Nzzv")
 --
 
+-- More remaps
+vim.keymap.set('n', "<leader>nt", vim.cmd.Ex)
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = '[G]it [F]iles' })
+--
+
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
