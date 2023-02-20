@@ -57,6 +57,9 @@ require('packer').startup(function(use)
   -- Added by me, Harpoon. Navigation|terminal/file switching.
   use 'nvim-lua/plenary.nvim'
   use 'ThePrimeagen/harpoon'
+  use 'mbbill/undotree'
+  use 'mbbill/undotree'
+  use 'ThePrimeagen/vim-be-good'
 
   -- Added by me, DoGe. docstring generation
   use {
@@ -158,8 +161,6 @@ vim.opt.scrolloff = 10
 vim.opt.updatetime = 50
 --
 
--- vim.keymap.set('v', "J", ":m '>+1<CR>gv=gv'")
--- vim.keymap.set('v', "K", ":m '>-2<CR>gv=gv'")
 
 
 -- Keymaps for better default experience
@@ -252,10 +253,10 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n',"<C-a>", function() require("harpoon.mark").add_file() end, { desc = '[A]dd mark'})
 vim.keymap.set('n',"<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, { desc = '[F]ind files' })
 
-vim.keymap.set('n', "<C-j>", function() require("harpoon.ui").nav_file(1) end, { desc = 'First file' })
-vim.keymap.set('n', "<C-k>", function() require("harpoon.ui").nav_file(2) end, { desc = 'Second file' })
-vim.keymap.set('n', "<C-l>", function() require("harpoon.ui").nav_file(3) end, { desc = 'Third file' })
-vim.keymap.set('n', "<C-;>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
+vim.keymap.set('n', "<C-1>", function() require("harpoon.ui").nav_file(1) end, { desc = 'First file' })
+vim.keymap.set('n', "<C-2>", function() require("harpoon.ui").nav_file(2) end, { desc = 'Second file' })
+vim.keymap.set('n', "<C-3>", function() require("harpoon.ui").nav_file(3) end, { desc = 'Third file' })
+vim.keymap.set('n', "<C-4>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
 --
 
 -- Navigation key bindings
@@ -263,13 +264,53 @@ vim.keymap.set('n', "<C-d>", "<C-d>zz")
 vim.keymap.set('n', "<C-d>", "<C-d>zz")
 vim.keymap.set('n', "n", "nzzzv")
 vim.keymap.set('n', "N", "Nzzzv")
+
 vim.keymap.set('x', "<leader>p", "\"_dP")
+vim.keymap.set('n', "<leader>y", "\"+y")
+vim.keymap.set('n', "<leader>Y", "\"+Y")
+vim.keymap.set('v', "<leader>y", "\"+y")
+vim.keymap.set('n', "<leader>d", "\"_d")
+vim.keymap.set('v', "<leader>d", "\"_d")
+
+vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 --
+
 
 -- More remaps
 vim.keymap.set('n', "<leader>nt", vim.cmd.Ex)
+vim.keymap.set('n', "<leader>u", vim.cmd.UndotreeShow)
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = '[G]it [F]iles' })
+
+vim.keymap.set('v', "J", ":m '>+1<CR>gv=gv'")
+vim.keymap.set('v', "K", ":m '<-2<CR>gv=gv'")
 --
+
+-- Git remaps
+-- Stage/reset individual hunks under cursor in a file
+vim.keymap.set('n', '<Leader>gs', ':Gitsigns stage_hunk<CR>')
+vim.keymap.set('n', '<Leader>gr', ':Gitsigns reset_hunk<CR>')
+vim.keymap.set('n', '<Leader>gu', ':Gitsigns undo_stage_hunk<CR>')
+
+-- Stage/reset all hunks in a file
+vim.keymap.set('n', '<Leader>gS', ':Gitsigns stage_buffer<CR>')
+vim.keymap.set('n', '<Leader>gU', ':Gitsigns reset_buffer_index<CR>')
+vim.keymap.set('n', '<Leader>gR', ':Gitsigns reset_buffer<CR>')
+
+-- Open git status in interative window (similar to lazygit)
+vim.keymap.set('n', '<Leader>gg', ':Git<CR>')
+
+-- Show `git status output`
+vim.keymap.set('n', '<Leader>gs', ':Git status<CR>')
+
+-- Open commit window (creates commit after writing and saving commit msg)
+vim.keymap.set('n', '<Leader>gc', ':Git commit | startinsert<CR>')
+
+-- Other tools from fugitive
+vim.keymap.set('n', '<Leader>gd', ':Git difftool<CR>')
+vim.keymap.set('n', '<Leader>gm', ':Git mergetool<CR>')
+vim.keymap.set('n', '<Leader>g|', ':Gvdiffsplit<CR>')
+vim.keymap.set('n', '<Leader>g_', ':Gdiffsplit<CR>')
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
