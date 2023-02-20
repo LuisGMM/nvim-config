@@ -142,6 +142,26 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Vim options added by me
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+-- vim.opt.hlsearch = true
+vim.opt.incsearch = true
+
+vim.opt.scrolloff = 10
+
+vim.opt.updatetime = 50
+--
+
+-- vim.keymap.set('v', "J", ":m '>+1<CR>gv=gv'")
+-- vim.keymap.set('v', "K", ":m '>-2<CR>gv=gv'")
+
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -241,8 +261,9 @@ vim.keymap.set('n', "<C-;>", function() require("harpoon.ui").nav_file(4) end, {
 -- Navigation key bindings
 vim.keymap.set('n', "<C-d>", "<C-d>zz")
 vim.keymap.set('n', "<C-d>", "<C-d>zz")
-vim.keymap.set('n', "n", "nzzv")
-vim.keymap.set('n', "N", "Nzzv")
+vim.keymap.set('n', "n", "nzzzv")
+vim.keymap.set('n', "N", "Nzzzv")
+vim.keymap.set('x', "<leader>p", "\"_dP")
 --
 
 -- More remaps
