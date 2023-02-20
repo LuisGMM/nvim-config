@@ -300,13 +300,13 @@ vim.keymap.set('n', '<Leader>gR', ':Gitsigns reset_buffer<CR>')
 vim.keymap.set('n', '<Leader>gg', ':Git<CR>')
 
 -- Show `git status output`
-vim.keymap.set('n', '<Leader>gs', ':Git status<CR>')
+vim.keymap.set('n', '<Leader>gst', ':Git status<CR>')
 
 -- Open commit window (creates commit after writing and saving commit msg)
 vim.keymap.set('n', '<Leader>gc', ':Git commit | startinsert<CR>')
 
 -- Other tools from fugitive
-vim.keymap.set('n', '<Leader>gd', ':Git difftool<CR>')
+vim.keymap.set('n', '<Leader>gdf', ':Git difftool<CR>')
 vim.keymap.set('n', '<Leader>gm', ':Git mergetool<CR>')
 vim.keymap.set('n', '<Leader>g|', ':Gvdiffsplit<CR>')
 vim.keymap.set('n', '<Leader>g_', ':Gdiffsplit<CR>')
