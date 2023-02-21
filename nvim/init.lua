@@ -67,6 +67,9 @@ require('packer').startup(function(use)
     run = ':call doge#install()'
   }
 
+  -- Remember to pip install it in the env you run it.
+  use {'fisadev/vim-isort'}
+
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
