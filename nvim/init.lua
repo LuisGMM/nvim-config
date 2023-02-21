@@ -115,7 +115,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.relativenumber = true
+vim.o.nu = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
