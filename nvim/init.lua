@@ -256,10 +256,10 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n',"<C-a>", function() require("harpoon.mark").add_file() end, { desc = '[A]dd mark'})
 vim.keymap.set('n',"<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, { desc = '[F]ind files' })
 
-vim.keymap.set('n', "<C-1>", function() require("harpoon.ui").nav_file(1) end, { desc = 'First file' })
-vim.keymap.set('n', "<C-2>", function() require("harpoon.ui").nav_file(2) end, { desc = 'Second file' })
-vim.keymap.set('n', "<C-3>", function() require("harpoon.ui").nav_file(3) end, { desc = 'Third file' })
-vim.keymap.set('n', "<C-4>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
+vim.keymap.set('n', "<C-m>", function() require("harpoon.ui").nav_file(1) end, { desc = 'First file' })
+vim.keymap.set('n', "<C-,>", function() require("harpoon.ui").nav_file(2) end, { desc = 'Second file' })
+vim.keymap.set('n', "<C-.>", function() require("harpoon.ui").nav_file(3) end, { desc = 'Third file' })
+vim.keymap.set('n', "<C-/>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
 --
 
 -- Navigation key bindings
