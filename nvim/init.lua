@@ -1,6 +1,7 @@
 -- Install packer
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local is_bootstrap = false
+local vim = vim
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	is_bootstrap = true
 	vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
@@ -45,7 +46,7 @@ require("packer").startup(function(use)
             -- LuaSnip completion source for nvim-cmp
             'saadparwaiz1/cmp_luasnip',
         },
-        config = [[ require('plugins.cmp') ]]
+        -- config = [[ require('plugins.cmp') ]]
     }
 
     -- Snippet Engine for Neovim written in Lua.
@@ -55,7 +56,7 @@ require("packer").startup(function(use)
             -- Snippets collection for a set of different programming languages for faster development
             'rafamadriz/friendly-snippets',
         },
-        config = [[ require('plugins.luasnip') ]]
+        -- config = [[ require('plugins.luasnip') ]]
     }
 
 	use({ -- Highlight, edit, and navigate code
@@ -84,7 +85,6 @@ require("packer").startup(function(use)
 	-- Harpoon. Navigation|terminal/file switching.
 	use("nvim-lua/plenary.nvim")
 	use("ThePrimeagen/harpoon")
-	use("mbbill/undotree")
 	use("mbbill/undotree")
 	use("ThePrimeagen/vim-be-good")
 
@@ -234,7 +234,7 @@ vim.g.ale_linters = {
 		-- "pydocstyle"
 	},
 	lua = {
-		-- "selene",
+		"selene",
         -- 'luacheck'
     -- 'lua_language_server'
 	},
