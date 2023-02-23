@@ -67,6 +67,11 @@ require('packer').startup(function(use)
     run = ':call doge#install()'
   }
 
+  -- Added by me, markdown preview in browser.
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
   -- Remember to pip install it in the env you run it.
   use {'fisadev/vim-isort'}
 
