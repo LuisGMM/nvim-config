@@ -75,6 +75,20 @@ require('packer').startup(function(use)
   -- Remember to pip install it in the env you run it.
   use {'fisadev/vim-isort'}
 
+  -- Auto close parentheses and repeat by dot dot dot ...
+  -- use 'jiangmiao/auto-pairs'
+use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+}
+
+  -- ale linter
+  use {
+    'dense-analysis/ale',
+    -- config = vim.cmd([[
+    --         runtime 'lua/plugins/ale.rc.vim'
+    --         ]])
+  }
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
 
@@ -170,7 +184,42 @@ vim.opt.scrolloff = 10
 vim.opt.updatetime = 50
 --
 
+-- ALE Configuration
+vim.g.ale_linters = {
+    python = {
+        "mypy",
+        "flake8",
+        "pycln",
+        "pydocstyle"
 
+    }}
+
+vim.g.ale_fixers = {
+    python = {
+        'add_blank_lines_for_python_control_statements', -- Add blank lines before control statements.
+        'autoflake', -- Fix flake issues with autoflake.
+        'autoimport', -- Fix import issues with autoimport.
+        'autopep8', -- Fix PEP8 issues with autopep8.
+        'black', -- Fix PEP8 issues with black.
+        'isort', -- Sort Python imports with isort.
+        'pycln', -- remove unused python import statements
+        -- 'pyflyby', -- Tidy Python imports with pyflyby.
+        'remove_trailing_lines', -- Remove all blank lines at the end of a file.
+        -- 'reorder-python-imports', -- Sort Python imports with reorder-python-imports.
+        -- 'ruff', -- A python linter/fixer for Python written in Rust
+        'trim_whitespace', -- Remove all trailing whitespace characters at the end of every line.
+        -- 'yapf', -- Fix Python files with yapf.
+    }
+}
+vim.g.ale_sign_error = 'E'
+vim.g.ale_sign_warning = 'W'
+vim.g.ale_echo_msg_error_str = 'E'
+vim.g.ale_echo_msg_warning_str = 'W'
+vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+vim.g.ale_disable_lsp = 1
+
+--
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -447,32 +496,37 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  pylsp = {
-    pylsp = {
-      configurationSources = {"flake8"},
-      plugins = {
-        pycodestyle = {enabled = false},
-        flake8 = {
-          enabled = true,
-          ignore = {},
-          maxLineLength = 100,
-          maxComplexity = 10
-        },
-        mypy = {enabled = true, live_mode = true},
-        isort = {enabled = true},
-        yapf = {enabled = false},
-        pylint = {enabled = false},
-        pydocstyle = {
-          enabled = true,
-        --  ignore = {"D100"}
-        },
-        pyflakes = { enabled = false },
-        mccabe = {enabled = false},
-        preload = {enabled = false},
-        rope_completion = {enabled = false}
-      }
-    }
-  },
+  -- pylsp = {
+  --   pylsp = {
+  --     -- configurationSources = {"flake8"},
+  --     plugins = {
+  --       pycodestyle = {enabled = false},
+  --       flake8 = {
+  --         -- enabled = true,
+  --         -- enabled = true,
+  --         enabled = false,
+  --         -- ignore = {},
+  --         -- maxLineLength = 100,
+  --         -- maxComplexity = 10
+  --       },
+  --       -- mypy = {enabled = true, live_mode = true},
+  --       mypy = {enabled = false, live_mode = true},
+  --       -- isort = {enabled = true},
+  --       isort = {enabled = false},
+  --       yapf = {enabled = false},
+  --       pylint = {enabled = false},
+  --       pydocstyle = {
+  --         -- enabled = true,
+  --         enabled = false,
+  --       --  ignore = {"D100"}
+  --       },
+  --       pyflakes = { enabled = false },
+  --       mccabe = {enabled = false},
+  --       preload = {enabled = false},
+  --       rope_completion = {enabled = false}
+  --     }
+  --   }
+  -- },
 
   lua_ls = {
     Lua = {
