@@ -27,37 +27,37 @@ require("packer").startup(function(use)
 		},
 	})
 
-    -- A completion plugin for neovim coded in Lua.
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            -- nvim-cmp source for neovim builtin LSP client
-            'hrsh7th/cmp-nvim-lsp',
-            -- nvim-cmp source for nvim lua
-            'hrsh7th/cmp-nvim-lua',
-            -- nvim-cmp source for buffer words
-            'hrsh7th/cmp-buffer',
-            -- nvim-cmp source for filesystem paths
-            'hrsh7th/cmp-path',
-            -- nvim-cmp source for math calculation
-            'hrsh7th/cmp-calc',
+	-- A completion plugin for neovim coded in Lua.
+	use({
+		"hrsh7th/nvim-cmp",
+		requires = {
+			-- nvim-cmp source for neovim builtin LSP client
+			"hrsh7th/cmp-nvim-lsp",
+			-- nvim-cmp source for nvim lua
+			"hrsh7th/cmp-nvim-lua",
+			-- nvim-cmp source for buffer words
+			"hrsh7th/cmp-buffer",
+			-- nvim-cmp source for filesystem paths
+			"hrsh7th/cmp-path",
+			-- nvim-cmp source for math calculation
+			"hrsh7th/cmp-calc",
 
-            "L3MON4D3/LuaSnip",
-            -- LuaSnip completion source for nvim-cmp
-            'saadparwaiz1/cmp_luasnip',
-        },
-        -- config = [[ require('plugins.cmp') ]]
-    }
+			"L3MON4D3/LuaSnip",
+			-- LuaSnip completion source for nvim-cmp
+			"saadparwaiz1/cmp_luasnip",
+		},
+		-- config = [[ require('plugins.cmp') ]]
+	})
 
-    -- Snippet Engine for Neovim written in Lua.
-    use {
-        'L3MON4D3/LuaSnip',
-        requires = {
-            -- Snippets collection for a set of different programming languages for faster development
-            'rafamadriz/friendly-snippets',
-        },
-        -- config = [[ require('plugins.luasnip') ]]
-    }
+	-- Snippet Engine for Neovim written in Lua.
+	use({
+		"L3MON4D3/LuaSnip",
+		requires = {
+			-- Snippets collection for a set of different programming languages for faster development
+			"rafamadriz/friendly-snippets",
+		},
+		-- config = [[ require('plugins.luasnip') ]]
+	})
 
 	use({ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
@@ -130,6 +130,7 @@ require("packer").startup(function(use)
 		end,
 	})
 
+	use("xiyaowong/nvim-transparent")
 	-- Fuzzy Finder (files, lsp, etc)
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
 
@@ -198,6 +199,8 @@ vim.wo.signcolumn = "yes"
 -- Set colorscheme
 vim.o.termguicolors = true
 vim.cmd([[colorscheme onedark]])
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -235,8 +238,8 @@ vim.g.ale_linters = {
 	},
 	lua = {
 		"selene",
-        -- 'luacheck'
-    -- 'lua_language_server'
+		-- 'luacheck'
+		-- 'lua_language_server'
 	},
 }
 
@@ -292,6 +295,23 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 	group = highlight_group,
 	pattern = "*",
+})
+
+require("transparent").setup({
+	enable = true, -- boolean: enable transparent
+	extra_groups = { -- table/string: additional groups that should be cleared
+		-- In particular, when you set it to 'all', that means all available groups
+		-- "all",
+		-- example of akinsho/nvim-bufferline.lua
+		"BufferLineTabClose",
+		"BufferlineBufferSelected",
+		"BufferLineFill",
+		"BufferLineBackground",
+		"BufferLineSeparator",
+		"B:ufferLineIndicatorSelected",
+	},
+	exclude = {}, -- table: groups you don't want to clear
+	ignore_linked_group = true, -- boolean: don't clear a group that links to another group
 })
 
 -- Set lualine as statusline
@@ -382,9 +402,12 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("x", "<leader>p", '"_dP')
+
 vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>yy", '"+yy')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("v", "<leader>y", '"+y')
+
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
@@ -396,8 +419,9 @@ vim.keymap.set("n", "<leader>nt", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeShow)
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "[G]it [F]iles" })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv'")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv'")
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 --
 
 -- Git remaps
@@ -588,10 +612,10 @@ local servers = {
 		Lua = {
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
-            }
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
 		},
 	},
 }
