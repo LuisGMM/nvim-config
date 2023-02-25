@@ -67,4 +67,23 @@ When done, inside neovim, open Mason package manager with `:Mason` and install t
 - selene
 
 Important links:
+
 - [Third party plugins](https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/pylsp/README.md)
+
+## Install zsh & oh-my-zsh
+
+Commands to install all you need:
+
+```bash
+sudo apt install zsh curl &&
+chsh -s $(which zsh) &&
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" &&
+sudo git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &&
+sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Important links
+
+- [Zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
+- [Oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)
+- [Install plugins](https://dev.to/kumareth/a-beginner-s-guide-for-setting-up-autocomplete-on-ohmyzsh-hyper-with-plugins-themes-47f2)
