@@ -78,6 +78,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Use TAB to accept suggestions
+bindkey '^ ' autosuggest-accept
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
