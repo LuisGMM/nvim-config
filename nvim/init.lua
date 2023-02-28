@@ -268,7 +268,7 @@ vim.g.ale_fixers = {
 
 -- Ale config
 
-vim.g.ale_python_flake8_options = "--max-line-length = 100"
+vim.g.ale_python_flake8_options = "--max-line-length 100"
 vim.g.ale_sign_error = "E"
 vim.g.ale_sign_warning = "W"
 vim.g.ale_echo_msg_error_str = "E"
@@ -389,10 +389,18 @@ vim.keymap.set("n", "<C-f>", function()
 	require("harpoon.ui").toggle_quick_menu()
 end, { desc = "[F]ind files" })
 
--- vim.keymap.set('n', "<C-m>", function() require("harpoon.ui").nav_file(1) end, { desc = 'First file' })
--- vim.keymap.set('n', "<C-,>", function() require("harpoon.ui").nav_file(2) end, { desc = 'Second file' })
--- vim.keymap.set('n', "<C-.>", function() require("harpoon.ui").nav_file(3) end, { desc = 'Third file' })
--- vim.keymap.set('n', "<C-/>", function() require("harpoon.ui").nav_file(4) end, { desc = 'Fourth file' })
+-- vim.keymap.set("n", "<Alt-1>", function()
+-- 	require("harpoon.ui").nav_file(1)
+-- end, { desc = "First file" })
+-- vim.keymap.set("n", "<Alt-2>", function()
+-- 	require("harpoon.ui").nav_file(2)
+-- end, { desc = "Second file" })
+-- vim.keymap.set("n", "<Alt-3>", function()
+-- 	require("harpoon.ui").nav_file(3)
+-- end, { desc = "Third file" })
+-- vim.keymap.set("n", "<Alt-4>", function()
+-- 	require("harpoon.ui").nav_file(4)
+-- end, { desc = "Fourth file" })
 --
 
 -- Navigation key bindings
@@ -405,8 +413,8 @@ vim.keymap.set("x", "<leader>p", '"_dP')
 
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>yy", '"+yy')
-vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+Y')
 
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
@@ -449,6 +457,9 @@ vim.keymap.set("n", "<Leader>gdf", ":Git difftool<CR>")
 vim.keymap.set("n", "<Leader>gm", ":Git mergetool<CR>")
 vim.keymap.set("n", "<Leader>g|", ":Gvdiffsplit<CR>")
 vim.keymap.set("n", "<Leader>g_", ":Gdiffsplit<CR>")
+
+-- Keymap to autogenerate docstring
+vim.keymap.set("n", "<F3>", ":DogeGenerate numpy<CR>")
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
